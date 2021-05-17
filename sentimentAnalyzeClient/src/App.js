@@ -79,6 +79,8 @@ class App extends React.Component {
   
 
   render() {
+    // Set the Title of the page
+    document.title = "Sentiment Analyzer";
     return (  
       <div className="App">
       <button className="btn btn-info" onClick={this.renderTextArea}>Text</button>
