@@ -37,17 +37,10 @@ app.get("/url/emotion", (req,res) => {
     const analyzeParams = {
         'url': url,
         'features': {
-            'entities': {
-                'emotion': true,
-                'sentiment': false,
-                'limit': 2,
-            },
-            'keywords': {
-                'emotion': true,
-                'sentiment': false,
-                'limit': 2,
-            },
-        },
+            'emotion': {
+                'document': true
+            }
+        }
     };
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
@@ -55,7 +48,7 @@ app.get("/url/emotion", (req,res) => {
             return res.send(analysisResults);
         })
         .catch(err => {
-            console.log('error:', err);
+            console.error('error:', err);
             return res.status(400).send(err.message);
         });
     //return res.send({"happy":"90","sad":"10"});
@@ -67,17 +60,10 @@ app.get("/url/sentiment", (req,res) => {
     const analyzeParams = {
         'url': url,
         'features': {
-            'entities': {
-                'emotion': false,
-                'sentiment': true,
-                'limit': 2,
-            },
-            'keywords': {
-                'emotion': false,
-                'sentiment': true,
-                'limit': 2,
-            },
-        },
+            'sentiment': {
+                'document': true
+            }
+        }
     };
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
@@ -85,7 +71,7 @@ app.get("/url/sentiment", (req,res) => {
             return res.send(analysisResults);
         })
         .catch(err => {
-            console.log('error:', err);
+            console.error('error:', err);
             return res.status(400).send(err.message);
         });
     //return res.send("url sentiment for "+req.query.url);
@@ -97,17 +83,10 @@ app.get("/text/emotion", (req,res) => {
     const analyzeParams = {
         'text': text,
         'features': {
-            'entities': {
-                'emotion': true,
-                'sentiment': false,
-                'limit': 2,
-            },
-            'keywords': {
-                'emotion': true,
-                'sentiment': false,
-                'limit': 2,
-            },
-        },
+            'emotion': {
+                'document': true
+            }
+        }
     };
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
@@ -115,7 +94,7 @@ app.get("/text/emotion", (req,res) => {
             return res.send(analysisResults);
         })
         .catch(err => {
-            console.log('error:', err);
+            console.error('error:', err);
             return res.status(400).send(err.message);
         });
     //return res.send({"happy":"10","sad":"90"});
@@ -127,17 +106,10 @@ app.get("/text/sentiment", (req,res) => {
     const analyzeParams = {
         'text': text,
         'features': {
-            'entities': {
-                'emotion': false,
-                'sentiment': true,
-                'limit': 2,
-            },
-            'keywords': {
-                'emotion': false,
-                'sentiment': true,
-                'limit': 2,
-            },
-        },
+            'sentiment': {
+                'document': true
+            }
+        }
     };
     nlu.analyze(analyzeParams)
         .then(analysisResults => {
@@ -145,7 +117,7 @@ app.get("/text/sentiment", (req,res) => {
             return res.send(analysisResults);
         })
         .catch(err => {
-            console.log('error:', err);
+            console.error('error:', err);
             return res.status(400).send(err.message);
         });
     //return res.send("text sentiment for "+req.query.text);
